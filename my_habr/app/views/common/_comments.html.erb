@@ -1,0 +1,11 @@
+<h3>Комментарии</h3>
+<% if object.comments.empty? == false %>
+
+    <% object.comments.each do |comment| %>
+        <p><%= comment.body %></p>
+    <% end %>
+<%	 else  %>
+    <h4>Комментариев пока нет. Оставьте комментарий первым.</h4>
+<% end %>
+
+<%= render 'comments/form', object: @comment %>

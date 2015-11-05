@@ -10,6 +10,8 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    set_post
+    @comment = Comment.new
   end
 
   # GET /posts/new
@@ -25,9 +27,9 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-
+    @comment = Comment.new
       if @post.save
-        redirect_to @post, notice: 'Post was successfully created.'
+        redirect_to @post, notice: 'Пост успешно создан.'
       else
         render :new
       end
@@ -38,7 +40,7 @@ class PostsController < ApplicationController
   def update
 
       if @post.update(post_params)
-        redirect_to @post, notice: 'Post was successfully updated.'
+        redirect_to @post, notice: 'Пост успешно обновлен.'
       else
         render :edit
       end
@@ -48,7 +50,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post.destroy
-      redirect_to posts_url, notice: 'Post was successfully destroyed.'
+      redirect_to posts_url, notice: 'Пост успешно удален.'
   end
 
 
@@ -60,6 +62,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:id, :title, :body, category_ids: [])
     end
 end

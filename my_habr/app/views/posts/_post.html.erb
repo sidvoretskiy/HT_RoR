@@ -1,0 +1,21 @@
+<table class="table  table-striped table-bordered">
+  <tbody>
+  <% @posts.each do |post| %>
+      <tr><td><h4><%= post.title %></h4>
+        <I>   <% post.category_ids.map.with_index do |cat,n| %>
+              <%= Category.find(cat).name %>
+              <% if n != post.category_ids.size - 1 %>
+                  ,
+              <% end %>
+          <% end %> </I><br>
+
+
+
+        <%= truncate(post.body, length: 200) %><br>
+        <%= link_to 'Читать далее... ', post %>
+      </td></tr>
+  <% end %>
+
+  </tbody>
+
+</table>
