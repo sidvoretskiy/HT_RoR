@@ -66,7 +66,7 @@
             <ul class="nav nav-list">
               <li class="nav-header"></li>
               <% Category.all.each do |category| %>
-                  <li><%= link_to category.name, @category  %></li>
+                  <li><%= link_to category.name, 'post', object: category.posts  %></li>
 
               <%	 end %>
 
