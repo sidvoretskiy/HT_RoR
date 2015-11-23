@@ -1,0 +1,7 @@
+<p>
+  <strong>Название:</strong>
+  <%= @category.name %>
+</p>
+
+<%= link_to 'Изменить', edit_admin_category_path(@category) %> |
+<%= link_to 'Назад', admin_categories_path %>

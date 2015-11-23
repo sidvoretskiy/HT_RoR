@@ -1,0 +1,8 @@
+<p><%= comment.body %>
+<% if comment.user == current_user %>
+<br>
+    <%= link_to 'Изменить', edit_comment_path(comment) %>
+ || <%= link_to 'Удалить', comment, method: :delete %>
+    <% end %>
+
+</p>

@@ -68,16 +68,7 @@
           <%= yield %>
         </div>
         <div class="col-lg-3">
-          <div class="well sidebar-nav">
-            <h3>Категории</h3>
-            <ul class="nav nav-list">
-              <li class="nav-header"></li>
-              <% Category.all.each do |category| %>
-                  <li><%= link_to category.name, category  %></li>
-              <%	 end %>
 
-            </ul>
-          </div><!--/.well -->
         </div><!--/span-->
       </div><!--/row-->
 

@@ -1,14 +1,24 @@
 <strong>Заголовок:</strong>
 <%= @post.title %>
 <p><strong>Категории:</strong>
-<% @post.category_ids.each do |cat| %>
-    <%= Category.find(cat).name %>
-<% end %>
+<i><%= @post.categories_titles %></i>
+</p>
+<p><strong>Создатель:</strong>
+  <i><%= @post.user.email %></i>
 </p>
 <p>
   <strong>Содержание:</strong>
   <%= @post.body %>
 </p>
-<%= render 'common/comments', object: @post %>
+<% if @post.comments.empty? %>
+    <h4>Комментариев пока нет. Оставьте комментарий первым.</h4>
+    <% else %>
+<%= render @post.comments %>
+    <% end %>
+<%= render 'comments/form' %>
+<%= link_to 'Изменить', edit_post_path(@post) %>
+<% if @post.user == current_user %>
 <%= link_to 'Изменить', edit_post_path(@post) %> |
+<%= link_to 'Удалить', @post, method: :delete %> |
+    <% end %>
 <%= link_to 'Назад', posts_path %>

@@ -25,9 +25,8 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @post = Post.find(params[:post_id])
-    @comment = Comment.new(comment_params)
-    @comment.post = @post
-
+    @comment = @post.comments.new(comment_params)
+    @comment.user = current_user
 
       if @comment.save
         redirect_to @post, notice: 'Комментарий успешно создан.'
@@ -55,10 +54,7 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.json
   def destroy
     @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      redirect_to @comment.post, notice: 'Comment was successfully destroyed.'
   end
 
   private

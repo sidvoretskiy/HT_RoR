@@ -1,4 +1,4 @@
-class CategoriesController < ApplicationController
+class Admin::CategoriesController < Admin::BaseController
 
   def index
     @categories = Category.all
@@ -12,11 +12,11 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
 
-      if @category.save
-        redirect_to '/categories/', notice: 'Категория успешно создана.'
-      else
-        render :new
-      end
+    if @category.save
+      redirect_to '/admin/categories/', notice: 'Категория успешно создана.'
+    else
+      render :new
+    end
 
   end
 
@@ -33,7 +33,7 @@ class CategoriesController < ApplicationController
   def destroy
     set_category
     @category.destroy
-    redirect_to categories_url, notice: 'Категория удалена.'
+    redirect_to admin_categories_url, notice: 'Категория удалена.'
   end
 
   def update
