@@ -1,0 +1,6 @@
+<p><%= comment.body %>
+  <br>
+  <%= link_to 'Изменить', edit_admin_comment_path(comment) %>
+  || <%= link_to 'Удалить', [:admin, comment], method: :delete %>
+
+</p>

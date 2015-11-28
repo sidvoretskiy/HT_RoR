@@ -12,9 +12,9 @@
   <% @categories.each do |category| %>
       <tr>
         <td><%= category.name %></td>
-        <td><%= link_to 'Показать', category %></td>
+        <td><%= link_to 'Показать', [:admin, category] %></td>
         <td><%= link_to 'Изменить', edit_admin_category_path(category) %></td>
-        <td><%= link_to 'Удалить', category, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <td><%= link_to 'Удалить', [:admin, category], method: :delete, data: { confirm: 'Вы уверены?' } %></td>
       </tr>
   <% end %>
   </tbody>

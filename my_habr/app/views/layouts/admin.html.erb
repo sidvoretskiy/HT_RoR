@@ -47,10 +47,11 @@
         </button>
         <a class="navbar-brand" href="/posts/">MyHabr</a>
         <% if user_signed_in? %>
-        <p class="navbar-brand"><%= current_user.email %></p>
             <p class="navbar-brand"><%= link_to "Выйти", destroy_user_session_path, method: :delete  %></p>
+            <br><%= current_user.email %>
             <% else %>
             <p class="navbar-brand"><%= link_to "Войти", new_user_session_path %></p>
+
 <% end  %>
 
         <div class="navbar-collapse collapse navbar-responsive-collapse">
@@ -68,7 +69,16 @@
           <%= yield %>
         </div>
         <div class="col-lg-3">
+          <div class="well sidebar-nav">
+            <h3>Управление</h3>
+            <ul class="nav nav-list">
+              <li class="nav-header"><%= link_to 'Категории', admin_categories_path %></li>
+              <li class="nav-header"><%= link_to 'Посты', admin_posts_path %></li>
+              <li class="nav-header"><%= link_to 'Пользователи', admin_users_path %></li>
 
+
+            </ul>
+          </div><!--/.well -->
         </div><!--/span-->
       </div><!--/row-->
 

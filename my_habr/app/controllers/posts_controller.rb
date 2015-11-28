@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :creator_check, only: [:edit, :update, :destroy]
+  before_action :authority_check, only: [:edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
@@ -58,12 +58,7 @@ class PostsController < ApplicationController
     redirect_to posts_url, notice: 'Пост успешно удален.'
   end
 
-  def creator_check
-    if  @post.user != current_user
-      redirect_to post_url, notice: 'У вас нет прав на выполнение этого действия.'
-    end
-    return
-  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -75,4 +70,16 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:id, :title, :body, category_ids: [])
     end
+
+    def creator_check
+      if  @post.user != current_user
+        redirect_to post_path, notice: 'У вас нет прав на выполнение этого действия.'
+      end
+    end
+
+  def authority_check
+    unless  @post.user == current_user || current_user.admin == true
+      redirect_to post_path, notice: 'У вас нет прав на выполнение этого действия.'
+    end
+  end
 end

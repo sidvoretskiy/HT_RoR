@@ -1,0 +1,21 @@
+<strong>Заголовок:</strong>
+<%= @post.title %>
+<p><strong>Категории:</strong>
+  <i><%= @post.categories_titles %></i>
+</p>
+<p><strong>Создатель:</strong>
+  <i><%= @post.user.email %></i>
+</p>
+<p>
+  <strong>Содержание:</strong>
+  <%= @post.body %>
+</p>
+<% if @post.comments.empty? %>
+    <h4>Комментариев пока нет.</h4>
+<% else %>
+    <%= render @post.comments %>
+<% end %>
+
+<%= link_to 'Изменить', edit_admin_post_path(@post) %> |
+<%= link_to 'Удалить', [:admin, @post], method: :delete %> |
+<%= link_to 'Назад', admin_posts_path %>

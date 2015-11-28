@@ -1,4 +1,6 @@
 class Admin::CategoriesController < Admin::BaseController
+before_action :set_category, only: [:show, :edit, :update, :destroy]
+
 
   def index
     @categories = Category.all
@@ -10,36 +12,27 @@ class Admin::CategoriesController < Admin::BaseController
 
   def create
     @category = Category.new(category_params)
-
-
     if @category.save
       redirect_to '/admin/categories/', notice: 'Категория успешно создана.'
     else
-      render :new
+      render admin_categories_path
     end
-
   end
 
   def show
-    set_category
-    @posts = @category.posts
-    render 'posts/_post'
   end
 
   def edit
-    @category = Category.find(params[:id])
   end
 
   def destroy
-    set_category
     @category.destroy
-    redirect_to admin_categories_url, notice: 'Категория удалена.'
+    redirect_to admin_categories_path, notice: 'Категория удалена.'
   end
 
   def update
-    set_category
     if @category.update(category_params)
-      redirect_to '/categories/', notice: 'Категория успешно обновлена.'
+      redirect_to '/admin/categories/', notice: 'Категория успешно обновлена.'
     else
       render :new
     end
@@ -52,7 +45,7 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def category_params
-    params.require(:category).permit(:name, :category_ids)
+    params.require(:category).permit(:name, :id)
   end
 
 end

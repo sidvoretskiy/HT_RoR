@@ -1,7 +1,8 @@
 <p>
-  <strong>Название:</strong>
+  <strong>Категория:</strong>
   <%= @category.name %>
+
+  <%= render @posts %>
 </p>
 
-<%= link_to 'Изменить', edit_category_path(@category) %> |
-<%= link_to 'Назад', categories_path %>
+

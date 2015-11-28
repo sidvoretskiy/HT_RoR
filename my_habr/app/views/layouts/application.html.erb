@@ -47,12 +47,15 @@
         </button>
         <a class="navbar-brand" href="/posts/">MyHabr</a>
         <% if user_signed_in? %>
-        <p class="navbar-brand"><%= current_user.email %></p>
+            <% if current_user.admin? %>
+            <p class="navbar-brand"><%= link_to "Административная консоль", admin_categories_path  %></p>
+            <% end  %>
             <p class="navbar-brand"><%= link_to "Выйти", destroy_user_session_path, method: :delete  %></p>
+            <br><%= current_user.email %>
             <% else %>
             <p class="navbar-brand"><%= link_to "Войти", new_user_session_path %></p>
-<% end  %>
 
+        <% end  %>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
 

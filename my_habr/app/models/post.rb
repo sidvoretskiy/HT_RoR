@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   has_many :categories, through: :categories_posts
   has_many :tags_posts
   has_many :tags, through: :tags_posts
-  validates :title, :body, presence: true
+  validates :title, :body, :user,  presence: true
   validates :title, length: { minimum: 2 }
 
   def categories_titles

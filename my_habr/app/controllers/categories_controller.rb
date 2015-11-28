@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @categories = Category.all
@@ -23,7 +24,6 @@ class CategoriesController < ApplicationController
   def show
     set_category
     @posts = @category.posts
-    render 'posts/_post'
   end
 
   def edit
@@ -54,5 +54,7 @@ class CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:name, :category_ids)
   end
+
+
 
 end
