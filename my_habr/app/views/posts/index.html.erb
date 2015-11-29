@@ -1,16 +1,17 @@
 <% content_for(:title) do %>
     Список постов
 <% end %>
-<%= link_to 'Новый пост', new_post_path %>
-
+<%= link_to 'Новый пост', new_post_path %><br>
+<%= link_to 'Все посты', posts_path %><br>
+<%= link_to 'Черновики', unpublished_posts_path %>
 
 <h1>Все посты</h1>
 
 
 
-
-<%= render @posts %>
-
+<% if @posts %>
+    <%= render @posts %>
+<% end %>
 
 
 

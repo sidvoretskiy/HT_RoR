@@ -14,6 +14,10 @@
       <%= f.label :category_ids, 'Категория' %><br>
       <%= f.collection_select :category_ids, Category.all, :id, :name, {}, { multiple: true } %>
     </div>
+    <div class="field">
+      <%= f.label :published, 'Опубликован' %><br>
+      <%= f.check_box :published %>
+    </div>
   <div class="actions">
     <%= f.submit %>
   </div>

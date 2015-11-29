@@ -1,6 +1,6 @@
 <p><%= comment.body %>
   <% if user_signed_in? %>
-  <% if comment.user_id == current_user.id %>
+  <% if comment.user_id == current_user.id || current_user.admin?%>
 <br>
     <%= link_to 'Изменить', edit_comment_path(comment) %>
  || <%= link_to 'Удалить', comment, method: :delete %>

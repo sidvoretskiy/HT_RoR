@@ -2,28 +2,25 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :authority_check, only: [:edit, :update, :destroy]
-  # GET /comments
-  # GET /comments.json
+
+
   def index
     @comments = Comment.all
   end
 
-  # GET /comments/1
-  # GET /comments/1.json
+
   def show
   end
 
-  # GET /comments/new
+
   def new
     @comment = Comment.new
   end
 
-  # GET /comments/1/edit
+
   def edit
   end
 
-  # POST /comments
-  # POST /comments.json
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
@@ -37,8 +34,6 @@ class CommentsController < ApplicationController
 
   end
 
-  # PATCH/PUT /comments/1
-  # PATCH/PUT /comments/1.json
   def update
     @comment.user = current_user
     if @comment.update(comment_params)
@@ -48,8 +43,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # DELETE /comments/1
-  # DELETE /comments/1.json
   def destroy
     @comment.destroy
     redirect_to @comment.post, notice: 'Комментарий успешно удален.'
@@ -71,4 +64,6 @@ class CommentsController < ApplicationController
       redirect_to post_path, notice: 'У вас нет прав на выполнение этого действия.'
     end
   end
+
+
 end

@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
   has_one :profile
   has_many :posts
   has_many :comments
+  has_many :subscriptions_posts
+  has_many :subscriptions, through: :subscriptions_posts, source: :post
 end
