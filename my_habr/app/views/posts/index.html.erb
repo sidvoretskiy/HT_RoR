@@ -1,11 +1,11 @@
 <% content_for(:title) do %>
-    Список постов
+    <%= t('.title')	  %>
 <% end %>
-<%= link_to 'Новый пост', new_post_path %><br>
-<%= link_to 'Все посты', posts_path %><br>
-<%= link_to 'Черновики', unpublished_posts_path %>
+<%= link_to t('common.create'), new_post_path %><br>
+<%= link_to t('common.all'), posts_path %><br>
+<%= link_to t('common.unpublished'), unpublished_posts_path %>
 
-<h1>Все посты</h1>
+<h1><%= t('.title')	  %></h1>
 
 
 

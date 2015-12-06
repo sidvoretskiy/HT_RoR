@@ -13,9 +13,9 @@ before_action :set_category, only: [:show, :edit, :update, :destroy]
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to '/admin/categories/', notice: 'Категория успешно создана.'
+      redirect_to '/admin/categories/', notice: t('admin.categories.notices.create')
     else
-      render admin_categories_path
+      render :new #, notice: @category.errors[0]
     end
   end
 
@@ -27,12 +27,12 @@ before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def destroy
     @category.destroy
-    redirect_to admin_categories_path, notice: 'Категория удалена.'
+    redirect_to admin_categories_path, notice: t('admin.categories.notices.delete')
   end
 
   def update
     if @category.update(category_params)
-      redirect_to '/admin/categories/', notice: 'Категория успешно обновлена.'
+      redirect_to '/admin/categories/', notice: t('admin.categories.notices.update')
     else
       render :new
     end

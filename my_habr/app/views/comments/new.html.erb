@@ -1,5 +1,5 @@
-<h1>Новый комментарий</h1>
+<h1><%= t('.title')	  %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Назад', post_path(@comment.post) %>
+<%= link_to t('common.back'), post_path(@comment.post) %>

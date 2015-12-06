@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Комментарий:</strong>
+  <strong><%= t('.title') %></strong>
   <%= @comment.body %>
 </p>
 
-<%= link_to 'Изменить', edit_comment_path(@comment) %> |
-<%= link_to 'Назад', post_path(@comment.post) %> |
+<%= link_to t('common.update'), edit_comment_path(@comment) %> |
+<%= link_to t('common.back'), post_path(@comment.post) %> |

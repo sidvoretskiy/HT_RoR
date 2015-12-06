@@ -3,22 +3,22 @@
 
 
   <div class="field">
-    <%= f.label :title, 'Заголовок' %><br>
+    <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :body, 'Содержание' %><br>
+    <%= f.label :body %><br>
     <%= f.text_area :body %>
   </div>
     <div class="field">
-      <%= f.label :category_ids, 'Категория' %><br>
+      <%= f.label :category_ids %><br>
       <%= f.collection_select :category_ids, Category.all, :id, :name, {}, { multiple: true } %>
     </div>
     <div class="field">
-      <%= f.label :published, 'Опубликован' %><br>
+      <%= f.label :published %><br>
       <%= f.check_box :published %>
     </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit t('.submit', action: @post.new_record? ? t('common.create') : t('common.update') ) %>
   </div>
 <% end %>

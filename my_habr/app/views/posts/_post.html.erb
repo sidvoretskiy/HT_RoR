@@ -7,21 +7,21 @@
 
       <I><%= post.categories_titles %></I><br>
       <%= truncate(post.body, length: 200) %><br>
-      <%= link_to 'Читать далее... ', post %>
+      <%= link_to t('common.read'), post %>
       <% if user_signed_in? %>
           <% if post.user_id == current_user.id || current_user.admin? %>
               <br>
-              <%= link_to 'Изменить', edit_post_path(post) %> |
-              <%= link_to 'Удалить', post, method: :delete %> |
+              <%= link_to t('common.update'), edit_post_path(post) %> |
+              <%= link_to t('common.delete'), post, method: :delete %> |
               <% if post.published %>
-                  <%= link_to 'Отправить в черновики', unpublish_post_path(post), method: :patch %>
+                  <%= link_to t('common.unpublished'), unpublish_post_path(post), method: :patch %>
               <% else %>
-                  <%= link_to 'Опубликовать', publish_post_path(post), method: :patch %>
+                  <%= link_to t('common.publish'), publish_post_path(post), method: :patch %>
               <% end %>
               <% if current_user.admin? %>
                   <% if post.published & post.moderated == false%>
-                      | <%= link_to 'Отклонить', reject_post_path(post), method: :patch %> |
-                      <%= link_to 'Одобрить', approve_post_path(post), method: :patch %>
+                      | <%= link_to t('common.reject'), reject_post_path(post), method: :patch %> |
+                      <%= link_to t('common.approve'), approve_post_path(post), method: :patch %>
                   <% end %>
               <% end %>
 

@@ -24,7 +24,7 @@ class PostsController < ApplicationController
   def approve
     @post.moderated = true
     if @post.save
-      redirect_to moderation_posts_path, notice: 'Пост успешно одобрен.'
+      redirect_to moderation_posts_path, notice: t('posts.notices.approved')
     else
       render :edit
     end
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
     @post.moderated = false
     @post.published = false
     if @post.save
-      redirect_to moderation_posts_path, notice: 'Пост успешно отклонен.'
+      redirect_to moderation_posts_path, notice: t('posts.notices.rejected')
     else
       render :edit
     end
@@ -63,7 +63,7 @@ class PostsController < ApplicationController
   def publish
     @post.published = true
     if @post.save
-      redirect_to unpublished_posts_path, notice: 'Пост успешно обновлен.'
+      redirect_to unpublished_posts_path, notice: t('posts.notices.update')
     else
       render :edit
     end
@@ -73,7 +73,7 @@ class PostsController < ApplicationController
     @post.published = false
     @post.moderated = false
     if @post.save
-      redirect_to unpublished_posts_path, notice: 'Пост успешно обновлен.'
+      redirect_to unpublished_posts_path, notice: t('posts.notices.update')
     else
       render :edit
     end
@@ -85,7 +85,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
 
       if @post.save
-        redirect_to @post, notice: 'Пост успешно создан.'
+        redirect_to @post, notice: t('posts.notices.create')
       else
         render :new
       end
@@ -94,7 +94,7 @@ class PostsController < ApplicationController
 
   def update
       if @post.update(post_params)
-        redirect_to @post, notice: 'Пост успешно обновлен.'
+        redirect_to @post, notice: t('posts.notices.update')
       else
         render :edit
       end
@@ -103,13 +103,13 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_url, notice: 'Пост успешно удален.'
+    redirect_to posts_url, notice: t('posts.notices.delete')
   end
 
   def unsubscribe
     @post.subscribers.delete(current_user)
     if @post.save
-      redirect_to @post, notice: 'Вы успешно отписались от рассылки.'
+      redirect_to @post, notice: t('posts.notices.unsubscribe')
     else
       render @posts
     end
@@ -118,7 +118,7 @@ class PostsController < ApplicationController
   def subscribe
     @post.subscribers << current_user
     if @post.save
-      redirect_to @post, notice: 'Вы успешно подписались на рассылку.'
+      redirect_to @post, notice: t('posts.notices.subscribe')
     else
       render @posts
     end
@@ -137,13 +137,13 @@ class PostsController < ApplicationController
 
     def creator_check
       if  @post.user != current_user
-        redirect_to post_path, notice: 'У вас нет прав на выполнение этого действия.'
+        redirect_to post_path, notice: t('posts.notices.no_authority')
       end
     end
 
   def authority_check
     unless  @post.user == current_user || current_user.admin == true
-      redirect_to post_path, notice: 'У вас нет прав на выполнение этого действия.'
+      redirect_to post_path, notice: t('posts.notices.no_authority')
     end
   end
 end

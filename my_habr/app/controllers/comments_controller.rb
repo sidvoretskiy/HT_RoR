@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to @post, notice: 'Комментарий успешно создан.'
+      redirect_to @post, notice: t('comments.notices.create')
     else
       render :'new'
     end
@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
   def update
     @comment.user = current_user
     if @comment.update(comment_params)
-      redirect_to @comment, notice: 'Комментарий успешно обновлен.'
+      redirect_to @comment, notice: t('comments.notices.update')
     else
       render :edit
     end
@@ -45,7 +45,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    redirect_to @comment.post, notice: 'Комментарий успешно удален.'
+    redirect_to @comment.post, notice: t('comments.notices.delete')
   end
 
   private
@@ -61,7 +61,7 @@ class CommentsController < ApplicationController
 
   def authority_check
     unless @comment.user == current_user || current_user.admin?
-      redirect_to post_path, notice: 'У вас нет прав на выполнение этого действия.'
+      redirect_to post_path, notice: t('comments.notices.no_authority')
     end
   end
 

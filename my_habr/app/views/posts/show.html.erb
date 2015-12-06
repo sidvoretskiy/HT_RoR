@@ -1,30 +1,30 @@
-<strong>Заголовок:</strong>
+<strong><%= t('.title')%></strong>
 <%= @post.title %>
-<p><strong>Категории:</strong>
+<p><strong><%= t('.category') %></strong>
   <i><%= @post.categories_titles %></i>
 </p>
-<p><strong>Создатель:</strong>
+<p><strong><%= t('.creator') %></strong>
   <i><%= @post.user.email %></i>
 </p>
 <p>
-  <strong>Содержание:</strong>
+  <strong><%= t('.body') %></strong>
   <%= @post.body %>
 </p>
 <% if @post.comments.empty? %>
-    <h4>Комментариев пока нет. Оставьте комментарий первым.</h4>
+    <h4><%= t('.no_comments') %></h4>
 <% else %>
     <%= render @post.comments %>
 <% end %>
 <%= render 'comments/form' %>
 <% if user_signed_in? %>
     <% if @post.subscribers.include?(current_user) %>
-        <%= link_to 'Отписаться от обновлений', unsubscribe_post_path(@post), method: :patch %> |
+        <%= link_to t('common.unsubscribe'), unsubscribe_post_path(@post), method: :patch %> |
     <% else %>
-        <%= link_to 'Подписаться на обновления', subscribe_post_path(@post), method: :patch %> |
+        <%= link_to t('common.subscribe'), subscribe_post_path(@post), method: :patch %> |
     <% end %>
     <% if @post.user_id == current_user.id || current_user.admin? %>
-        <%= link_to 'Изменить', edit_post_path(@post) %> |
-        <%= link_to 'Удалить', @post, method: :delete %> |
+        <%= link_to t('common.update'), edit_post_path(@post) %> |
+        <%= link_to t('common.delete'), @post, method: :delete %> |
     <% end %>
 <% end %>
-<%= link_to 'Назад', posts_path %>
+<%= link_to t('common.back'), posts_path %>
