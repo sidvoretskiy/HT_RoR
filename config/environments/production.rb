@@ -80,10 +80,10 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       port: ENV['MAILGUN_SMTP_PORT'],
-      address: ENW['MAILGUN_SMTP_SERVER'],
-      user_name: ENW['MAILGUN_SMTP_USER'],
-      password: ENW['MAILGUN_SMTP_PASSWORD'],
-      domain: ENW['thawing-fjord-7143.herokuapp.com'],
+      address: ENV['MAILGUN_SMTP_SERVER'],
+      user_name: ENV['MAILGUN_SMTP_USER'],
+      password: ENV['MAILGUN_SMTP_PASSWORD'],
+      domain: ENV['thawing-fjord-7143.herokuapp.com'],
       authentication: :plain
   }
 end
