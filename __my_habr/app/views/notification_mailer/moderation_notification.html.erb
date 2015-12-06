@@ -1,0 +1,7 @@
+<p>Привет, <%= @user.email %></p>
+<p>Ваш пост "<%= link_to @post.title, @post %>" был
+  <% if @post.moderated %>
+      одобрен
+  <% else %>оклонен
+  <% end %></p>
+<p>Все посты вы можете посмотреть "<%= link_to 'здесь', posts_url %>"</p>

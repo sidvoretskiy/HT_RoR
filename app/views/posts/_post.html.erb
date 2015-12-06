@@ -1,0 +1,37 @@
+<table class="table  table-striped table-bordered">
+  <tbody>
+
+  <tr>
+    <td><h4><%= post.title %></h4>
+
+
+      <I><%= post.categories_titles %></I><br>
+      <%= truncate(post.body, length: 200) %><br>
+      <%= link_to t('common.read'), post %>
+      <% if user_signed_in? %>
+          <% if post.user_id == current_user.id || current_user.admin? %>
+              <br>
+              <%= link_with_icon :pencil, edit_post_path(post), title: t('common.update') %>
+
+              <%= link_with_icon 'trash-o', post, title: t('common.delete'), method: :delete %> <br>
+              <% if post.published %>
+                  <%= link_to t('common.unpublished'), unpublish_post_path(post), method: :patch %>
+              <% else %>
+                  <%= link_to t('common.publish'), publish_post_path(post), method: :patch %>
+              <% end %>
+              <% if current_user.admin? %>
+                  <% if post.published & post.moderated == false%>
+                      | <%= link_to t('common.reject'), reject_post_path(post), method: :patch %> |
+                      <%= link_to t('common.approve'), approve_post_path(post), method: :patch %>
+                  <% end %>
+              <% end %>
+
+          <% end %>
+      <% end %>
+    </td>
+  </tr>
+
+
+  </tbody>
+
+</table>

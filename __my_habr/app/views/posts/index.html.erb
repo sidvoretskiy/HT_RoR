@@ -1,0 +1,18 @@
+<% content_for(:title) do %>
+    <%= t('.title')	  %>
+<% end %>
+<%= link_to t('common.create'), new_post_path %><br>
+<%= link_to t('common.all'), posts_path %><br>
+<%= link_to t('common.unpublished'), unpublished_posts_path %>
+
+<h1><%= t('.title')	  %></h1>
+
+
+
+<% if @posts %>
+    <%= render @posts %>
+<% end %>
+
+
+
+
