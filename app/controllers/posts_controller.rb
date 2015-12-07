@@ -52,8 +52,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    # @post = current_user.posts.new(post_params)
-    @post.user = User.find(2)
+    @post.user = current_user
   end
 
 
