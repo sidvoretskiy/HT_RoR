@@ -36,8 +36,9 @@ class CommentsController < ApplicationController
 
   def update
     @comment.user = current_user
+    @post = @comment.post
     if @comment.update(comment_params)
-      redirect_to @comment, notice: t('comments.notices.update')
+      redirect_to @post, notice: t('comments.notices.update')
     else
       render :edit
     end

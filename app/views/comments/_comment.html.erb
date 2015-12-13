@@ -1,8 +1,23 @@
+<% hidden = true %>
+<%= div_for comment do %>
 <p><%= comment.body %>
+  <%end%>
+  <%= form_for (comment), html: {style: "display: #{hidden ? 'none' : 'block'}"} do |f| %>
+
+      <%= render 'common/errors', object: comment  %>
+
+    <div class="field">
+      <%= f.text_area :body %>
+    </div>
+    <div class="actions">
+      <%= f.submit ('Изменить')%>
+    </div>
+
+<% end %>
   <% if user_signed_in? %>
   <% if comment.user_id == current_user.id || current_user.admin?%>
 <br>
-    <%= link_to t('common.update'), edit_comment_path(comment) %>
+    <%= link_to t('common.update'), '#', class: 'edit_comment_link', data: { comment_id: comment.id } %>
  || <%= link_to t('common.delete'), comment, method: :delete %>
     <% end %>
   <% end %>
