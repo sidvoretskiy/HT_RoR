@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/HT_RoR.iml" filepath="$PROJECT_DIR$/.idea/HT_RoR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/my_habr.iml" filepath="$PROJECT_DIR$/.idea/my_habr.iml" />
     </modules>
   </component>
 </project>

@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source name="Rails HT_RoR: development" uuid="c0373c13-8644-43dc-aae5-142f11e34cfc">
-    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
-  </data-source>
-  <data-source name="Rails HT_RoR: test" uuid="d055468c-4e50-498d-9dd5-09f2a1df633c">
-    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
-  </data-source>
-  <data-source name="Rails HT_RoR: production" uuid="7d371e80-fa0a-4dcf-bde7-be4df12dd96f">
+  <data-source name="Rails my_habr: development" uuid="22a7e84e-02c2-40a3-affe-0de8f2ada711">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
 </component>
